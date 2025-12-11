@@ -1,0 +1,24 @@
+---
+title: random data gen
+---
+
+```{python}
+import polars as pl
+
+import numpy as np
+from numpy.random import rand, choice
+```
+
+
+```{python create dataframe}
+df = pl.DataFrame({
+    "id": np.arange(0, 1_000_000),
+    "value": rand(1_000_000),
+    "category": choice(["A", "B", "C", "D"], size=1_000_000)
+})
+
+```
+
+```{python write file}
+df.write_parquet("random.parquet")
+```
